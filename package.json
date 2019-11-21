@@ -1,0 +1,11 @@
+{
+  "name": "webpack.config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Chang-Jin <2475477667@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
