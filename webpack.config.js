@@ -59,7 +59,7 @@ module.exports = {
                 //             enforce: 'pre' // previous 提前执行 post 之后执行
                 //         }
                 //     }
-            }, {
+            }, { // 使用babel处理js
                 test: /\.js$/,
                 use: {
                     loader: 'babel-loader',
@@ -75,6 +75,19 @@ module.exports = {
                 },
                 include: path.resolve(__dirname, 'src'), // 包含
                 exclude: /node_modules/ // 排除
+            }, { // 处理图片
+                test: /\.(png|jpg|gif)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 200 * 1024 // 限制图片大小小于200K的使用base64来转化 否则使用file-loader产生真实图片
+                    }
+                }
+            }, { // 处理html中的图片图片
+                test: /\.html$/,
+                use: {
+                    loader: 'html-withimg-loader'
+                }
             }
         ]
     },
