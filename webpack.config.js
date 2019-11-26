@@ -5,7 +5,7 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
-    mode: 'production', // 模式 development
+    mode: 'development', // 模式 development production
     entry: './src/index.js', // 入口
     output: {
         // filename: 'bundle.[hash:8].js', // 打包后文件名
@@ -48,6 +48,30 @@ module.exports = {
                         loader: 'less-loader' // 把less -> css
                     }
                 ]
+            }, { // js代码校验
+                test: /\.js$/,
+                use: {
+                    loader: 'eslint-loader',
+                    options:{
+                        enforce: 'pre' // previous 提前执行 post 之后执行
+                    }
+                }
+            }, {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: { // 用babel-loader 把es6 -> es5
+                        presets: [
+                            '@babel/preset-env' // es6 -> es5
+                        ],
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties', // 转化es7中的class语法
+                            '@babel/plugin-transform-runtime' // babel转换运行时
+                        ]
+                    }
+                },
+                include: path.resolve(__dirname, 'src'), // 包含
+                exclude: /node_modules/ // 排除
             }
         ]
     },
