@@ -5,11 +5,20 @@
   "author": "Chang-Jin <2475477667@qq.com>",
   "license": "MIT",
   "scripts": {
-      "build": "webpack",
-      "dev": "webpack-dev-server"
+    "build": "webpack",
+    "dev": "webpack-dev-server"
   },
   "devDependencies": {
+    "autoprefixer": "^9.7.2",
+    "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
