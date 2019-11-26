@@ -6,10 +6,13 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
     mode: 'development', // 模式 development production
-    entry: './src/index.js', // 入口
+    entry: {
+        index: './src/index.js',
+        expose: './src/expose-loader-use.js'
+    }, // 入口
     output: {
         // filename: 'bundle.[hash:8].js', // 打包后文件名
-        filename: 'bundle.js', // 打包后文件名
+        filename: '[name].js', // 打包后文件名
         path: path.resolve(__dirname, 'dist') // 路径
     },
     devServer: { // 开发服务器配置
@@ -48,14 +51,14 @@ module.exports = {
                         loader: 'less-loader' // 把less -> css
                     }
                 ]
-            }, { // js代码校验
-                test: /\.js$/,
-                use: {
-                    loader: 'eslint-loader',
-                    options:{
-                        enforce: 'pre' // previous 提前执行 post 之后执行
-                    }
-                }
+                // }, { // js代码校验
+                //     test: /\.js$/,
+                //     use: {
+                //         loader: 'eslint-loader',
+                //         options:{
+                //             enforce: 'pre' // previous 提前执行 post 之后执行
+                //         }
+                //     }
             }, {
                 test: /\.js$/,
                 use: {
