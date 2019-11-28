@@ -28,7 +28,18 @@ module.exports = {
             new OptimizeCSSAssetsPlugin({}) // 压缩css
         ]
     },
-    devtool: 'eval-source-map', // 源码映射； source-map：大而全； eval-source-map：不会产生.map单独文件； cheap-module-source-map：不会显示列，但会产生一个单独文件；cheap-module-eval-source-map：不会产生文件，也不产生列
+    // 源码映射
+    // source-map：大而全；
+    // eval-source-map：不会产生.map单独文件；
+    // cheap-module-source-map：不会显示列，但会产生一个单独文件；
+    // cheap-module-eval-source-map：不会产生文件，也不产生列
+    devtool: 'cheap-module-eval-source-map',
+    watch: true, // 监控
+    watchOptions: { // 监控配置
+        poll: 1000, // 监控频率
+        aggreateTimeout: 500, // 监控防抖
+        ignored: /node_modules/ // 忽略不需要监控的代码
+    },
     module: { // 模块
         rules: [ // 规则
             {
