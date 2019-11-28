@@ -11,9 +11,10 @@ module.exports = {
         expose: './src/expose-loader-use.js'
     }, // 入口
     output: {
-        // filename: 'bundle.[hash:8].js', // 打包后文件名
         filename: '[name].js', // 打包后文件名
-        path: path.resolve(__dirname, 'dist') // 路径
+        // filename: 'bundle.[hash:8].js', // 带hash的文件名
+        path: path.resolve(__dirname, 'dist'), // 路径
+        publicPath: 'http://www.xxx.com/' // cdn路径
     },
     devServer: { // 开发服务器配置
         port: 8080, // 服务端口号
@@ -80,7 +81,8 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        limit: 200 * 1024 // 限制图片大小小于200K的使用base64来转化 否则使用file-loader产生真实图片
+                        limit: 40 * 1024, // 限制图片大小小于200K的使用base64来转化 否则使用file-loader产生真实图片
+                        outputPath: 'img/' // 图片路径
                     }
                 }
             }, { // 处理html中的图片图片
@@ -93,11 +95,12 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({ // 抽离css
-            filename: 'css/main.css',
+            filename: 'css/main.css', // css路径
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html', // 生成文件名
+            chunks: ['index', 'expose'], // 控制引入哪个个打包文件
             minify: {
                 removeAttributeQuotes: true, // 删除双引号
                 collapseWhitespace: true // 折叠为一行
