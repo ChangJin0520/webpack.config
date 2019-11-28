@@ -4,3 +4,5 @@ require('./index.less')
 
 // 图片引入方式
 import logo from './test.png';
+
+console.lo(1)

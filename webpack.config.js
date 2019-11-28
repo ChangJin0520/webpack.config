@@ -13,8 +13,8 @@ module.exports = {
     output: {
         filename: '[name].js', // 打包后文件名
         // filename: 'bundle.[hash:8].js', // 带hash的文件名
-        path: path.resolve(__dirname, 'dist'), // 路径
-        publicPath: 'http://www.xxx.com/' // cdn路径
+        path: path.resolve(__dirname, 'dist') // 路径
+        // publicPath: 'http://www.xxx.com/' // cdn路径
     },
     devServer: { // 开发服务器配置
         port: 8080, // 服务端口号
@@ -28,6 +28,7 @@ module.exports = {
             new OptimizeCSSAssetsPlugin({}) // 压缩css
         ]
     },
+    devtool: 'eval-source-map', // 源码映射； source-map：大而全； eval-source-map：不会产生.map单独文件； cheap-module-source-map：不会显示列，但会产生一个单独文件；cheap-module-eval-source-map：不会产生文件，也不产生列
     module: { // 模块
         rules: [ // 规则
             {
