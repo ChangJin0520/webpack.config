@@ -127,6 +127,10 @@ module.exports = {
                 collapseWhitespace: true // 折叠为一行
             },
             hash: true // 添加hash戳
+        }),
+        new webpack.DefinePlugin({ // 配置定义环境变量
+            DEV: JSON.stringify('development'),
+            PRODUCTION: JSON.stringify('production')
         })
     ]
 }
