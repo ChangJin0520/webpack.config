@@ -6,3 +6,6 @@ require('./index.less')
 import logo from './test.png';
 
 console.log(1)
+
+// 测试 resolve 下的 alias
+import 'bootstrap';

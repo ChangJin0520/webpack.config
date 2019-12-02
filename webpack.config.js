@@ -37,8 +37,17 @@ module.exports = {
     watch: true, // 监控
     watchOptions: { // 监控配置
         poll: 1000, // 监控频率
-        aggreateTimeout: 500, // 监控防抖
+        // aggreateTimeout: 500, // 监控防抖
         ignored: /node_modules/ // 忽略不需要监控的代码
+    },
+    resolve: { // 解析 第三方包
+        modules: [path.resolve('node_modules')], // 解析包地址
+        // mainFields: ['style', 'main'], // 配置第三方包解析入口
+        // mainFiles: [] // 配置入口文件的名字  默认为 index.js
+        // extensions: ['.js', '.css', '.json'], // 扩展名配置 当不写后缀名时会按此顺序查找 vue中有类似配置
+        alias: { // 别名
+            bootstrap: 'bootstrap/dist/css/bootstrap.css'
+        }
     },
     module: { // 模块
         rules: [ // 规则
