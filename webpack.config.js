@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
@@ -91,7 +92,8 @@ module.exports = {
                         ],
                         plugins: [
                             '@babel/plugin-proposal-class-properties', // 转化es7中的class语法
-                            '@babel/plugin-transform-runtime' // babel转换运行时
+                            '@babel/plugin-transform-runtime', // babel转换运行时
+                            '@babel/plugin-syntax-dynamic-import' // 是支持import语法
                         ]
                     }
                 },
