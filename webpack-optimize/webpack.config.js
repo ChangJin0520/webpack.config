@@ -5,6 +5,7 @@ module.exports = {
     mode: 'development',
     entry: './src/index.js',
     module: {
+        noParse: /jquery/, // 不解析jquery中的依赖库
         rules: [
             {
                 test: /\.js$/,
