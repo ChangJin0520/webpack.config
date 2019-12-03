@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -9,6 +10,8 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/, // 排除
+                include: path.resolve('src'), // 包含
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -28,6 +31,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
-        })
+        }),
+        new webpack.IgnorePlugin(/\.\/locale/, /moment/) // 忽略指定包中的require引用
     ]
 }
