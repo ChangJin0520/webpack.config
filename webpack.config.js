@@ -12,15 +12,16 @@ module.exports = {
         expose: './src/expose-loader-use.js'
     }, // 入口
     output: {
-        filename: '[name].js', // 打包后文件名
-        // filename: 'bundle.[hash:8].js', // 带hash的文件名
+        // filename: '[name].js', // 打包后文件名
+        filename: '[name].[hash:8].js', // 带hash的文件名
         path: path.resolve(__dirname, 'dist') // 路径
         // publicPath: 'http://www.xxx.com/' // cdn路径
     },
     devServer: { // 开发服务器配置
+        hot: true, // 启用热更新
         port: 8080, // 服务端口号
-        progress: true, // 进度条
-        open: true, // 自动打开浏览器
+        // progress: true, // 进度条
+        // open: true, // 自动打开浏览器
         contentBase: './dist' // 服务运行的地址
     },
     optimization: { // 优化项
@@ -45,7 +46,7 @@ module.exports = {
         modules: [path.resolve('node_modules')], // 解析包地址
         // mainFields: ['style', 'main'], // 配置第三方包解析入口
         // mainFiles: [] // 配置入口文件的名字  默认为 index.js
-        // extensions: ['.js', '.css', '.json'], // 扩展名配置 当不写后缀名时会按此顺序查找 vue中有类似配置
+        extensions: ['.js', '.css', '.json'], // 扩展名配置 当不写后缀名时会按此顺序查找 vue中有类似配置
         alias: { // 别名
             bootstrap: 'bootstrap/dist/css/bootstrap.css'
         }
@@ -133,6 +134,8 @@ module.exports = {
         new webpack.DefinePlugin({ // 配置定义环境变量
             DEV: JSON.stringify('development'),
             PRODUCTION: JSON.stringify('production')
-        })
+        }),
+        new webpack.NamedModulesPlugin(), // 打印更新的模块路径
+        new webpack.HotModuleReplacementPlugin() // 热更新插件
     ]
 }
